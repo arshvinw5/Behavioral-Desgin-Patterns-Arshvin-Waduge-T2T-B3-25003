@@ -1,18 +1,21 @@
-## Getting Started
+# Behavioral Design Patterns in Java
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+This repository contains my Java assignment project. All source code has been organized and committed to the src folder for easy access and review. Project Structure
 
 ## Folder Structure
 
 The workspace contains two folders by default, where:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+- src/ [ folder_name ] : Contains all Java source files (.java)
+- bin/ : (Optional) Compiled output (generated automatically)
+- .vscode/ : VS Code configuration (if applicable)
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+### How to View the Assignment
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+Clone or download this repository. Navigate to the src directory. Open any .java file to view the implementation.
 
-## Dependency Management
+The project is set up using Visual Studio Code with the Java Extension Pack. No external dependencies are required unless specified in the code.
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Feel free to explore, run, or review the code as needed.
+
+#### Reflection report : `https://docs.google.com/document/d/13lNFmnfTIGzmuQShVkRKE_2u2mCToV01KLfyg4QJDS0/edit?usp=drive_link`
