@@ -3,77 +3,77 @@ package Observer_Pattern_Demo;
 import java.util.ArrayList;
 import java.util.List;
 
-interface Observer {
+//creating subscribers interface to make different observers implement it
+interface Subscribers {
   void update(float temperature, float humidity);
 }
 
-class PhoneDisplay implements Observer {
+class PhoneDisplay implements Subscribers {
   @Override
   public void update(float temperature, float humidity) {
-    System.out.println("Phone Display: Temp = " + temperature + "°C, Humidity = " + humidity + "%");
+    System.out.println("Phone Display -> Temperature: " + temperature + "°C, Humidity: " + humidity + "%");
   }
 }
 
-class TVDisplay implements Observer {
+class TVDisplay implements Subscribers {
   @Override
   public void update(float temperature, float humidity) {
-    System.out.println("TV Display: Temp = " + temperature + "°C, Humidity = " + humidity + "%");
+    System.out.println("TV Display -> Temperature: " + temperature + "°C, Humidity: " + humidity + "%");
   }
 }
 
-class WebDashboard implements Observer {
+class WebDashboard implements Subscribers {
   @Override
   public void update(float temperature, float humidity) {
-    System.out.println("Web Dashboard: Temp = " + temperature + "°C, Humidity = " + humidity + "%");
+    System.out.println("Web Dashboard -> Temperature: " + temperature + "°C, Humidity: " + humidity + "%");
   }
 }
 
+// creating subject interface to make different subjects implement it
 interface Subject {
-  void addObserver(Observer o);
+  void addObserver(Subscribers s);
 
-  void removeObserver(Observer o);
+  void removeObserver(Subscribers s);
 
   void notifyObservers();
 }
 
 class WeatherStation implements Subject {
-  private List<Observer> observers = new ArrayList<>();
+  private List<Subscribers> subscribersList = new ArrayList<>();
   private float temperature;
   private float humidity;
 
   @Override
-  public void addObserver(Observer o) {
-    observers.add(o);
+  public void addObserver(Subscribers s) {
+    subscribersList.add(s);
   }
 
   @Override
-  public void removeObserver(Observer o) {
-    observers.remove(o);
+  public void removeObserver(Subscribers s) {
+    subscribersList.remove(s);
   }
 
   @Override
   public void notifyObservers() {
-    for (Observer o : observers) {
-      o.update(temperature, humidity);
+    for (Subscribers s : subscribersList) {
+      s.update(temperature, humidity);
     }
   }
 
-  // Method to change weather data
   public void setWeatherData(float temperature, float humidity) {
     this.temperature = temperature;
     this.humidity = humidity;
-    notifyObservers(); // automatically updates all observers
+    notifyObservers();
   }
 }
 
 public class Observer_Pattern_Demo {
-
   public static void main(String[] args) throws InterruptedException {
     WeatherStation station = new WeatherStation();
 
-    Observer phone = new PhoneDisplay();
-    Observer tv = new TVDisplay();
-    Observer web = new WebDashboard();
+    Subscribers phone = new PhoneDisplay();
+    Subscribers tv = new TVDisplay();
+    Subscribers web = new WebDashboard();
 
     // Register observers
     station.addObserver(phone);
@@ -82,6 +82,8 @@ public class Observer_Pattern_Demo {
 
     // Simulate weather changes
     station.setWeatherData(26.0f, 58.0f);
+
+    // to have delay for notification visibility
     Thread.sleep(2000);
     station.setWeatherData(30.0f, 65.0f);
 
@@ -89,8 +91,8 @@ public class Observer_Pattern_Demo {
     System.out.println("\n--- Removing TV Display ---");
     station.removeObserver(tv);
 
+    // to have delay for notification visibility
     Thread.sleep(2000);
     station.setWeatherData(28.0f, 60.0f);
   }
-
 }
