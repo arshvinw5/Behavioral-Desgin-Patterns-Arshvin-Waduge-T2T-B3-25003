@@ -164,7 +164,7 @@ class ShoppingCart {
       return;
     }
     int total = calculateTotal();
-    System.out.println("Total: " + total);
+    System.out.println("Total Amount in Cart: " + total);
     paymentStrategy.pay(total);
   }
 
@@ -179,14 +179,17 @@ class Strategy_Pattern_Demo {
     cart.addItem(new Item("Laptop", 50000));
 
     // Pay using Credit Card
+    System.out.println("\n--- Paying with Credit Card ---");
     cart.setPaymentStrategy(new CreditCardPayment("1234-5678-9012-3456", "John Doe", "123", "12/25"));
     cart.pay();
 
     // Pay using PayPal
+    System.out.println("\n--- Paying with PayPal ---");
     cart.setPaymentStrategy(new PayPalPayment("john.doe@example.com"));
     cart.pay();
 
     // Pay using UPI
+    System.out.println("\n--- Paying with UPI ---");
     cart.setPaymentStrategy(new UPIPayment("john.doe@upi"));
     cart.pay();
   }
